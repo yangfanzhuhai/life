@@ -18,9 +18,7 @@ public class Model extends java.util.Observable {
 				cells[i][j] = new Cell();
 			}
 		}
-		
-		//cells[5][6].setGreen();
-		//cells[7][6].setRed();
+
 		setChanged();
 		javax.swing.SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
@@ -38,6 +36,10 @@ public class Model extends java.util.Observable {
 			}
 		});
 	}
+	
+	protected final void step() {
+		
+	}
 
 	protected int getTurnCount() {
 		return turnCount;
@@ -46,4 +48,6 @@ public class Model extends java.util.Observable {
 	protected Cell[][] getCells() {
 		return cells;
 	}
+
+
 }

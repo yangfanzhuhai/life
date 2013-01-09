@@ -18,8 +18,6 @@ public class View implements java.util.Observer {
 	private final JFrame frame;
 	private Controller controller;
 	
-
-
 	View(final int therows) {
 		rows = therows;
 		// create the GUI components
@@ -32,7 +30,14 @@ public class View implements java.util.Observer {
 		stepButton = new JButton("Step");
 		runButton = new JButton("Run");
 		quitButton = new JButton("Quit");
-
+		
+		//create button panel for the four function buttons
+		JPanel buttonPane = new JPanel();
+		buttonPane.setLayout(new BoxLayout
+				(buttonPane, BoxLayout.LINE_AXIS));
+		buttonPane.setBorder(
+				BorderFactory.createEmptyBorder(0, 10, 10, 10));
+	
 		// create the buttons for cells
 		// no individual buttons added for now
 		buttons = new JButton[rows][rows];
@@ -53,14 +58,14 @@ public class View implements java.util.Observer {
 		// add the panel to the frame
 		frame.add(panel, BorderLayout.CENTER);
 
-		// add the function buttons to the bottom of the frame
-		//final Box box = new Box()
-		
-		frame.add(clearButton, BorderLayout.SOUTH);
-		frame.add(stepButton, BorderLayout.SOUTH);
-		frame.add(runButton, BorderLayout.SOUTH);
-		frame.add(quitButton, BorderLayout.SOUTH);
+		// Lay out the buttons from left to right
+		buttonPane.add(clearButton);
+		buttonPane.add(stepButton);
+		buttonPane.add(runButton);
+		buttonPane.add(quitButton);
 
+		frame.add(buttonPane, BorderLayout.SOUTH);
+		
 		// The program exits when the window is closed
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
@@ -111,8 +116,8 @@ public class View implements java.util.Observer {
 			break;
 		}
 
-		// button.setOpaque(true);
-		// button.setBorderPainted(false);
+		 button.setOpaque(true);
+		 button.setBorderPainted(false);
 
 		button.addMouseListener(new MouseAdapter() {
 			@Override
@@ -136,8 +141,6 @@ public class View implements java.util.Observer {
 		updatePanel(model.getCells());
 		frame.validate();
 	}
-
-
 
 	public void addController(Controller controller) {
 		this.controller = controller;
