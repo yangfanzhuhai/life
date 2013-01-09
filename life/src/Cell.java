@@ -6,12 +6,8 @@ public class Cell {
 		color = Colour.GRAY;
 	}
 
-	public void setRed() {
-		color = Colour.RED;
-	}
-
-	public void setGreen() {
-		color = Colour.GREEN;
+	public void setColor(Colour c) {
+		color = c;
 	}
 
 	public Colour getColor() {

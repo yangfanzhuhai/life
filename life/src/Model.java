@@ -2,6 +2,7 @@ public class Model extends java.util.Observable {
 	private final int rows;
 	private Cell[][] cells;
 	private Model model;
+	private int turnCount;
 
 	protected Model(int therows) {
 		rows = therows;
@@ -10,6 +11,8 @@ public class Model extends java.util.Observable {
 	}
 
 	protected final void initDefault() {
+		turnCount = 0;
+		
 		for (int i = 0; i < rows; i++) {
 			for (int j = 0; j < rows; j++) {
 				cells[i][j] = new Cell();
@@ -26,18 +29,8 @@ public class Model extends java.util.Observable {
 		});
 	}
 	
-	protected final void setRedCell(int r, int c) {
-		cells[r][c].setRed();
-		setChanged();
-		javax.swing.SwingUtilities.invokeLater(new Runnable() {
-			public void run() {
-				notifyObservers(model);
-			}
-		});
-	}
-	
-	protected final void setGreenCell(int r, int c) {
-		cells[r][c].setGreen();
+	protected final void setCellColor(Colour color, int r, int c) {
+		cells[r][c].setColor(color);
 		setChanged();
 		javax.swing.SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
@@ -46,6 +39,10 @@ public class Model extends java.util.Observable {
 		});
 	}
 
+	protected int getTurnCount() {
+		return turnCount;
+	}
+	
 	protected Cell[][] getCells() {
 		return cells;
 	}

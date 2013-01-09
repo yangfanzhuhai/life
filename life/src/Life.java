@@ -37,7 +37,6 @@ public class Life {
 				// initialises the View
 				final View view = new View(therows);
 				
-
 				// start up a new thread for code that is irrelavent
 				// to updating the GUI
 				Thread buildMVCthread = new Thread() {
