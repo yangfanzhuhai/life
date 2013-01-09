@@ -1,10 +1,12 @@
 public class Model extends java.util.Observable {
 	private final int rows;
 	private Cell[][] cells;
+	private Model model;
 
-	public Model(int therows) {
+	protected Model(int therows) {
 		rows = therows;
 		cells = new Cell[rows][rows];
+		model = this;
 	}
 
 	protected final void initDefault() {
@@ -17,10 +19,34 @@ public class Model extends java.util.Observable {
 		//cells[5][6].setGreen();
 		//cells[7][6].setRed();
 		setChanged();
-		notifyObservers(this);
+		javax.swing.SwingUtilities.invokeLater(new Runnable() {
+			public void run() {
+				notifyObservers(model);
+			}
+		});
+	}
+	
+	protected final void setRedCell(int r, int c) {
+		cells[r][c].setRed();
+		setChanged();
+		javax.swing.SwingUtilities.invokeLater(new Runnable() {
+			public void run() {
+				notifyObservers(model);
+			}
+		});
+	}
+	
+	protected final void setGreenCell(int r, int c) {
+		cells[r][c].setGreen();
+		setChanged();
+		javax.swing.SwingUtilities.invokeLater(new Runnable() {
+			public void run() {
+				notifyObservers(model);
+			}
+		});
 	}
 
-	public Cell[][] getCells() {
+	protected Cell[][] getCells() {
 		return cells;
 	}
 }

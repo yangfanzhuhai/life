@@ -1,6 +1,5 @@
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
 import java.util.Observable;
 
 import javax.swing.*;
@@ -9,7 +8,7 @@ public class View implements java.util.Observer {
 	private final int rows;
 	private final JLabel countLabel;
 	private JButton buttons[][];
-	private final JPanel panel;
+	private JPanel panel;
 	private final JFrame frame;
 	private Controller controller;
 
@@ -24,7 +23,7 @@ public class View implements java.util.Observer {
 		// no individual buttons added for now
 		buttons = new JButton[rows][rows];
 
-		// create the panel and init layout
+		// create a new panel and init layout
 		panel = new JPanel();
 		panel.setLayout(new GridLayout(rows, rows));
 
@@ -46,6 +45,13 @@ public class View implements java.util.Observer {
 	}
 
 	protected void updatePanel(Cell[][] cells) {
+		// remove the old panel
+		frame.remove(panel);
+
+		// create a new panel and init layout
+		panel = new JPanel();
+		panel.setLayout(new GridLayout(rows, rows));
+
 		// update the individual buttons to represent individual cells
 		for (int i = 0; i < rows; i++) {
 			for (int j = 0; j < rows; j++) {
@@ -59,10 +65,12 @@ public class View implements java.util.Observer {
 			for (int j = 0; j < rows; j++)
 				panel.add(buttons[i][j]);
 		}
+
+		// add the panel to the frame
+		frame.add(panel, BorderLayout.CENTER);
 	}
 
-	protected JButton gridButton(final Colour color, 
-			final int r, final int c) {
+	protected JButton gridButton(final Colour color, final int r, final int c) {
 		JButton button = new JButton();
 
 		switch (color) {
@@ -77,13 +85,17 @@ public class View implements java.util.Observer {
 			break;
 		}
 
-		button.setOpaque(true);
-		button.setBorderPainted(false);
+		// button.setOpaque(true);
+		// button.setBorderPainted(false);
 
-		button.addActionListener(new ActionListener() {
+		button.addMouseListener(new MouseAdapter() {
 			@Override
-			public void actionPerformed(ActionEvent actionEvent) {
-				
+			public void mouseClicked(MouseEvent event) {
+				if (SwingUtilities.isLeftMouseButton(event)) {
+					controller.setRedCell(r, c);
+				} else if (SwingUtilities.isRightMouseButton(event)) {
+					controller.setGreenCell(r, c);
+				}
 			}
 		});
 		return button;

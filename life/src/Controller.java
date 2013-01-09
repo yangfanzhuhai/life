@@ -17,4 +17,12 @@ public class Controller implements java.awt.event.ActionListener {
 		model.initDefault();
 	}
 
+	public void setRedCell(int r, int c) {
+		model.setRedCell(r, c);
+	}
+
+	public void setGreenCell(int r, int c) {
+		model.setGreenCell(r, c);
+	}
+
 }
