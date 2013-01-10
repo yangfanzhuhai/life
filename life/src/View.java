@@ -35,8 +35,7 @@ public class View implements java.util.Observer {
 		JPanel buttonPane = new JPanel();
 		buttonPane.setLayout(new BoxLayout
 				(buttonPane, BoxLayout.LINE_AXIS));
-		buttonPane.setBorder(
-				BorderFactory.createEmptyBorder(0, 10, 10, 10));
+		//buttonPane.setBorder(BorderFactory.createEmptyBorder(0, 10, 10, 10));
 	
 		// create the buttons for cells
 		// no individual buttons added for now
@@ -45,6 +44,7 @@ public class View implements java.util.Observer {
 		// create a new panel and init layout
 		panel = new JPanel();
 		panel.setLayout(new GridLayout(rows, rows));
+		//panel.setSize(rows * 35, rows * 35);
 
 		// create the frame and init size
 		frame = new JFrame();
