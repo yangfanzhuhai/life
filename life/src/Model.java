@@ -26,10 +26,6 @@ public class Model extends java.util.Observable {
 		cells[r][c].setColor(color);
 		updateView();
 	}
-	
-	protected final void setRunning() {
-		
-	}
 
 	protected final void step() {
 		newCells = new Cell[rows][rows];
@@ -56,7 +52,6 @@ public class Model extends java.util.Observable {
 							if (c == rows) 	{c = 0;}
 
 							Colour color = cells[r][c].getColor();
-							//System.out.println("Cell " + r + " " + c + color);
 							if (color == Colour.RED) {
 								red++;
 							} else if (color == Colour.GREEN) {
@@ -66,13 +61,6 @@ public class Model extends java.util.Observable {
 					}
 				}
 				newCells[i][j] = getNewInnerCell(cells[i][j], red, green);
-
-				/*System.out.println("Cell " + i + " " + j + "\n"
-						+ "Original Colour:" + cells[i][j].getColor() + "\n"
-						+ "Red " + red + "\n" + "Green " + green + "\n"
-						+ "New Color " + newCells[i][j].getColor()
-						+ "\n_______________");
-				*/
 			}
 		}
 
