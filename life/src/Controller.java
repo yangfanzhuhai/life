@@ -25,7 +25,8 @@ public class Controller implements java.awt.event.ActionListener,
 			}
 		};
 	}
-
+	
+	// when a function button is clicked
 	@Override
 	public void actionPerformed(ActionEvent event) {
 		// the button pressed
@@ -33,15 +34,6 @@ public class Controller implements java.awt.event.ActionListener,
 
 		// the button's label
 		final String label = sent.getText();
-
-		/*
-		 * range R = 1..10
-		 * 
-		 * LIFE = LIFE[1], LIFE[s:R] = (slide[n:R] -> LIFE[n] | run ->
-		 * RUNNING[s] | clear -> LIFE | step -> LIFE[s] | quit -> STOP),
-		 * 
-		 * RUNNING[s:R] = (slide[n:R] -> RUNNING[n] | pause -> LIFE[s]).
-		 */
 
 		if (isRunning == false) {
 			if (label.equals("Clear")) {
@@ -53,7 +45,7 @@ public class Controller implements java.awt.event.ActionListener,
 			} else if (label.equals("Run")) {
 				isRunning = true;
 				sent.setText("Pause");
-				startNewTimer(runSpeed);
+				startNewTimer();
 			}
 		}
 
@@ -66,6 +58,7 @@ public class Controller implements java.awt.event.ActionListener,
 		}
 	}
 
+	// when the slider value is adjusted
 	@Override
 	public void stateChanged(final ChangeEvent event) {
 		final JSlider source = (JSlider) event.getSource();
@@ -73,19 +66,25 @@ public class Controller implements java.awt.event.ActionListener,
 		// it only changes the label at the end of the movement
 		if (!source.getValueIsAdjusting()) {
 			runSpeed = (int) source.getValue();
-			startNewTimer(runSpeed);
+			if (isRunning) {
+				timer.stop();
+				startNewTimer();
+			}
 		}
 	}
 	
-	private void startNewTimer(int speed){
-		timer = new Timer(2000 / speed, runTaskPerformer);
+	// start a new timer with the updated runSpeed
+	private void startNewTimer(){
+		timer = new Timer(2000 / runSpeed, runTaskPerformer);
 		timer.start();
 	}
-
+	
+	// clear button : kills all cells and resets the turn count to 0
 	public void initModel() {
 		model.initDefault();
 	}
 
+	// change cell[r][c] to color
 	public void setCellColor(Colour color, int r, int c) {
 		if (isRunning == false) {
 			model.setCellColor(color, r, c);

@@ -42,7 +42,15 @@ public class View implements java.util.Observer {
 
 		// create a frame and init size
 		frame = new JFrame();
-		frame.setSize(rows * 20, rows * 20 + 50);
+		
+		int dimension;
+		if (rows <= 10) {
+			dimension = 300; 
+		} else {
+			dimension = rows * 25;
+		}
+		
+		frame.setSize(dimension, dimension + 50);
 
 		// add and arrange the components
 
@@ -60,6 +68,7 @@ public class View implements java.util.Observer {
 
 		// The program exits when the window is closed
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setTitle("Life");
 		frame.setVisible(true);
 	}
 
