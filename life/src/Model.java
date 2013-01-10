@@ -26,6 +26,10 @@ public class Model extends java.util.Observable {
 		cells[r][c].setColor(color);
 		updateView();
 	}
+	
+	protected final void setRunning() {
+		
+	}
 
 	protected final void step() {
 		newCells = new Cell[rows][rows];
@@ -39,28 +43,18 @@ public class Model extends java.util.Observable {
 				// eight neighbouring cells
 				for (int x = -1; x <= 1; x++) {
 					for (int y = -1; y <= 1; y++) {
-						int r = i + x;
-						int c = j + y;
-
-						// wrapping for corner cases and border cases
-						if (r == -1) {
-							r = rows - 1;
-						}
-
-						if (c == -1) {
-							c = rows - 1;
-						}
-
-						if (r == rows) {
-							r = 0;
-						}
-
-						if (c == rows) {
-							c = 0;
-						}
-
+						
 						// checks the color of the neighbouring cell
 						if (!(x == 0 && y == 0)) {
+							int r = i + x;
+							int c = j + y;
+
+							// wrapping for corner cases and border cases
+							if (r == -1) 	{r = rows - 1;}
+							if (c == -1) 	{c = rows - 1;}
+							if (r == rows) 	{r = 0;}
+							if (c == rows) 	{c = 0;}
+
 							Colour color = cells[r][c].getColor();
 							//System.out.println("Cell " + r + " " + c + color);
 							if (color == Colour.RED) {
@@ -89,6 +83,7 @@ public class Model extends java.util.Observable {
 
 	// determines the new cell color by life rules
 	private Cell getNewInnerCell(Cell originalCell, int red, int green) {
+		
 		int aliveNeighbours = red + green;
 		Cell newInnerCell = new Cell();
 
@@ -119,7 +114,7 @@ public class Model extends java.util.Observable {
 			/*
 			 * When a new cell is born, it inherits the majority colour of its
 			 * surrounding cells when there are equal number of red and green
-			 * surronding cells, the new cell inherits red colour
+			 * surrounding cells, the new cell inherits red colour
 			 */
 			if (red >= green) {
 				newInnerCell.setColor(Colour.RED);
