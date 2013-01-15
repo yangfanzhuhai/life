@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+
+        <title>Rules · The Game of Life</title>
+
+        <!-- Le styles -->
+        <link href="assets/css/bootstrap.css" rel="stylesheet">
+        <link href="assets/css/bootstrap-responsive.css" rel="stylesheet">
+        <link href="assets/css/docs.css" rel="stylesheet">
+
+    </head>
+
+    <body data-spy="scroll" data-target=".bs-docs-sidebar">
+
+        <!-- Navbar
+        ================================================== -->
+        <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="navbar-inner">
+                <div class="container">
+                    <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="brand" href="./life.html">The Game of Life</a>
+                    <div class="nav-collapse collapse">
+                        <ul class="nav">
+                            <li class="">
+                                <a href="./life.html">Home</a>
+                            </li>
+                            <li class="">
+                                <a href="./play.html">Play</a>
+                            </li>
+                            <li class="active">
+                                <a href="./rules.html">Rules</a>
+                            </li>
+                            <li class="">
+                                <a href="./design-pattern.html">Design Pattern</a>
+                            </li>
+                            <!--
+                            <li class="">
+                            <a href="./components.html">Components</a>
+                            </li>
+                            <li class="">
+                            <a href="./javascript.html">JavaScript</a>
+                            </li>
+                            <li class="">
+                            <a href="./customize.html">Customize</a>
+                            </li>
+                            -->
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Subhead
+        ================================================== -->
+        <header class="jumbotron subhead" id="overview">
+            <div class="container">
+                <h1>Rules of Life</h1>
+                <p class="lead">
+                    You have to learn the rules of the game.
+                    <br>
+                    And then you have to play better than anyone else.
+                </p>
+                <small class="lead">Albert Einstein</small>
+            </div>
+        </header>
+
+        <div class="container">
+            <!-- Content
+            ================================================== -->
+            <section id="overview">
+                <h3>zero-player</h3>
+
+                <p>
+                    Alter the initial configuration and observe how it unfolds.
+                    <br>
+                    The game's evolution is determined by its initial state, requiring no further input.
+                </p>
+
+                <h3>edgeless grid</h3>
+                <p>
+                    The universe of the game is set out as a grid of cells. The grid is often assumed
+                    to be infinite.
+                    <br>
+                    In this implementation the grid is wrapped around as a torus
+                    (or dough-nut) so that each cell has eight neighbouring cells.
+                </p>
+
+                <h3>life or death</h3>
+                <p>
+                    Each cell is in one of two possible states: <strong>alive</strong> or <strong>dead</strong>.
+                    <br>
+                    At each step in time, the following transitions occur:
+                    <ol>
+                        <li>
+                            Any live cell with fewer than two live neighbours dies, as if by isolation.
+                        </li>
+                        <li>
+                            Any live cell with two or three live neighbours lives on to the next generation.
+                        </li>
+                        <li>
+                            Any live cell with more than three live neighbours dies, as if by overcrowding.
+                        </li>
+                        <li>
+                            Any dead cell with exactly three live neighbours becomes a live cell, as if by reproduction.
+                        </li>
+                    </ol>
+                </p>
+
+                <h3>colourful life</h3>
+                <p>
+                    Cells also have a colour: either red or green. 
+                    <br>
+                    When a new cell is born it inherits the majority colour of its surrounding cells. 
+                </p>
+            </section>
+
+        </div>
+    </body>
+</html>
