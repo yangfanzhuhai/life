@@ -278,12 +278,6 @@ a:hover {
   clear: both;
 }
 
-[class*="span"] {
-  float: left;
-  min-height: 1px;
-  margin-left: 20px;
-}
-
 .container,
 .navbar-static-top .container,
 .navbar-fixed-top .container,
@@ -401,26 +395,6 @@ a:hover {
 
 .row-fluid:after {
   clear: both;
-}
-
-.row-fluid [class*="span"] {
-  display: block;
-  float: left;
-  width: 100%;
-  min-height: 30px;
-  margin-left: 2.127659574468085%;
-  *margin-left: 2.074468085106383%;
-  -webkit-box-sizing: border-box;
-     -moz-box-sizing: border-box;
-          box-sizing: border-box;
-}
-
-.row-fluid [class*="span"]:first-child {
-  margin-left: 0;
-}
-
-.row-fluid .controls-row [class*="span"] + [class*="span"] {
-  margin-left: 2.127659574468085%;
 }
 
 .row-fluid .span12 {
@@ -601,16 +575,6 @@ a:hover {
 .row-fluid .offset1:first-child {
   margin-left: 8.51063829787234%;
   *margin-left: 8.404255319148938%;
-}
-
-[class*="span"].hide,
-.row-fluid [class*="span"].hide {
-  display: none;
-}
-
-[class*="span"].pull-right,
-.row-fluid [class*="span"].pull-right {
-  float: right;
 }
 
 .container {
@@ -1285,39 +1249,10 @@ textarea::-webkit-input-placeholder {
   width: 530px;
 }
 
-input[class*="span"],
-select[class*="span"],
-textarea[class*="span"],
-.uneditable-input[class*="span"],
-.row-fluid input[class*="span"],
-.row-fluid select[class*="span"],
-.row-fluid textarea[class*="span"],
-.row-fluid .uneditable-input[class*="span"] {
-  float: none;
-  margin-left: 0;
-}
-
-.input-append input[class*="span"],
-.input-append .uneditable-input[class*="span"],
-.input-prepend input[class*="span"],
-.input-prepend .uneditable-input[class*="span"],
-.row-fluid input[class*="span"],
-.row-fluid select[class*="span"],
-.row-fluid textarea[class*="span"],
-.row-fluid .uneditable-input[class*="span"],
-.row-fluid .input-prepend [class*="span"],
-.row-fluid .input-append [class*="span"] {
-  display: inline-block;
-}
-
 input,
 textarea,
 .uneditable-input {
   margin-left: 0;
-}
-
-.controls-row [class*="span"] + [class*="span"] {
-  margin-left: 20px;
 }
 
 input.span12,
@@ -1405,16 +1340,6 @@ textarea.span1,
 
 .controls-row:after {
   clear: both;
-}
-
-.controls-row [class*="span"],
-.row-fluid .controls-row [class*="span"] {
-  float: left;
-}
-
-.controls-row .checkbox[class*="span"],
-.controls-row .radio[class*="span"] {
-  padding-top: 5px;
 }
 
 input[disabled],
@@ -2118,15 +2043,6 @@ table {
   background-color: #f5f5f5;
 }
 
-table td[class*="span"],
-table th[class*="span"],
-.row-fluid table td[class*="span"],
-.row-fluid table th[class*="span"] {
-  display: table-cell;
-  float: none;
-  margin-left: 0;
-}
-
 .table td.span1,
 .table th.span1 {
   float: none;
@@ -2243,37 +2159,10 @@ table th[class*="span"],
   background-color: #c4e3f3;
 }
 
-[class^="icon-"],
-[class*=" icon-"] {
-  display: inline-block;
-  width: 14px;
-  height: 14px;
-  margin-top: 1px;
-  *margin-right: .3em;
-  line-height: 14px;
-  vertical-align: text-top;
-  background-image: url("../img/glyphicons-halflings.png");
-  background-position: 14px 14px;
-  background-repeat: no-repeat;
-}
+
 
 /* White icons with optional class, or on hover/active states of certain elements */
 
-.icon-white,
-.nav-pills > .active > a > [class^="icon-"],
-.nav-pills > .active > a > [class*=" icon-"],
-.nav-list > .active > a > [class^="icon-"],
-.nav-list > .active > a > [class*=" icon-"],
-.navbar-inverse .nav > .active > a > [class^="icon-"],
-.navbar-inverse .nav > .active > a > [class*=" icon-"],
-.dropdown-menu > li > a:hover > [class^="icon-"],
-.dropdown-menu > li > a:hover > [class*=" icon-"],
-.dropdown-menu > .active > a > [class^="icon-"],
-.dropdown-menu > .active > a > [class*=" icon-"],
-.dropdown-submenu:hover > a > [class^="icon-"],
-.dropdown-submenu:hover > a > [class*=" icon-"] {
-  background-image: url("../img/glyphicons-halflings-white.png");
-}
 
 .icon-glass {
   background-position: 0      0;
@@ -3246,10 +3135,6 @@ button.close {
           border-radius: 6px;
 }
 
-.btn-large [class^="icon-"],
-.btn-large [class*=" icon-"] {
-  margin-top: 4px;
-}
 
 .btn-small {
   padding: 2px 10px;
@@ -3257,16 +3142,6 @@ button.close {
   -webkit-border-radius: 3px;
      -moz-border-radius: 3px;
           border-radius: 3px;
-}
-
-.btn-small [class^="icon-"],
-.btn-small [class*=" icon-"] {
-  margin-top: 0;
-}
-
-.btn-mini [class^="icon-"],
-.btn-mini [class*=" icon-"] {
-  margin-top: -1px;
 }
 
 .btn-mini {
@@ -3949,11 +3824,6 @@ input[type="submit"].btn.btn-mini {
   color: #ffffff;
   text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.2);
   background-color: #0088cc;
-}
-
-.nav-list [class^="icon-"],
-.nav-list [class*=" icon-"] {
-  margin-right: 2px;
 }
 
 .nav-list .divider {
@@ -5630,51 +5500,6 @@ a.badge:hover {
   top: 0;
 }
 
-@-webkit-keyframes progress-bar-stripes {
-  from {
-    background-position: 40px 0;
-  }
-  to {
-    background-position: 0 0;
-  }
-}
-
-@-moz-keyframes progress-bar-stripes {
-  from {
-    background-position: 40px 0;
-  }
-  to {
-    background-position: 0 0;
-  }
-}
-
-@-ms-keyframes progress-bar-stripes {
-  from {
-    background-position: 40px 0;
-  }
-  to {
-    background-position: 0 0;
-  }
-}
-
-@-o-keyframes progress-bar-stripes {
-  from {
-    background-position: 0 0;
-  }
-  to {
-    background-position: 40px 0;
-  }
-}
-
-@keyframes progress-bar-stripes {
-  from {
-    background-position: 40px 0;
-  }
-  to {
-    background-position: 0 0;
-  }
-}
-
 .progress {
   height: 20px;
   margin-bottom: 20px;
@@ -5742,13 +5567,7 @@ a.badge:hover {
           background-size: 40px 40px;
 }
 
-.progress.active .bar {
-  -webkit-animation: progress-bar-stripes 2s linear infinite;
-     -moz-animation: progress-bar-stripes 2s linear infinite;
-      -ms-animation: progress-bar-stripes 2s linear infinite;
-       -o-animation: progress-bar-stripes 2s linear infinite;
-          animation: progress-bar-stripes 2s linear infinite;
-}
+
 
 .progress-danger .bar,
 .progress .bar-danger {

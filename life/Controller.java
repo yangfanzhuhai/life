@@ -1,17 +1,11 @@
 package life;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
-import javax.swing.JButton;
-import javax.swing.JSlider;
 import javax.swing.Timer;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
-
 import life.Life.Colour;
 
-public class Controller implements java.awt.event.ActionListener,
-		ChangeListener {
+public class Controller {
 	private final Model model;
 	private boolean isRunning;
 	private int runSpeed;
@@ -24,60 +18,22 @@ public class Controller implements java.awt.event.ActionListener,
 		runSpeed = 1;
 		runTaskPerformer = new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
-				step();
+				stepModel();
 			}
 		};
-	}
-	
-	// when a function button is clicked
-	@Override
-	public void actionPerformed(ActionEvent event) {
-		// the button pressed
-		final JButton sent = (JButton) event.getSource();
-
-		// the button's label
-		final String label = sent.getText();
-
-		if (isRunning == false) {
-			if (label.equals("Clear")) {
-				clear();
-			} else if (label.equals("Step")) {
-				step();
-			} else if (label.equals("Run")) {
-				isRunning = true;
-				sent.setText("Pause");
-				startNewTimer();
-			}
-		}
-
-		if (isRunning == true) {
-			if (label.equals("Pause")) {
-				isRunning = false;
-				sent.setText("Run");
-				timer.stop();
-			}
-		}
-	}
-
-	// when the slider value is adjusted
-	@Override
-	public void stateChanged(final ChangeEvent event) {
-		final JSlider source = (JSlider) event.getSource();
-		// The listener is called when the slider moves
-		// it only changes the label at the end of the movement
-		if (!source.getValueIsAdjusting()) {
-			runSpeed = (int) source.getValue();
-			if (isRunning) {
-				timer.stop();
-				startNewTimer();
-			}
-		}
-	}
-	
-	// start a new timer with the updated runSpeed
-	private void startNewTimer(){
 		timer = new Timer(2000 / runSpeed, runTaskPerformer);
-		timer.start();
+	}
+	
+	// step the simulation through one application of the rules and increment
+	// the turn counter
+	private void stepModel() {
+		model.step();
+	}
+
+	// called when the runSpeed is updated via user interaction
+	public void runSpeedChanged(int newSpeed) {
+		runSpeed = newSpeed;
+		timer.setDelay(2000 / runSpeed);
 	}
 
 	// change cell[r][c] to color
@@ -91,7 +47,7 @@ public class Controller implements java.awt.event.ActionListener,
 	public Colour readCell(int x, int y) {
 		return model.getCellColor(x, y);
 	}
-	
+
 	// read the turn count
 	public int readTurn() {
 		return model.getTurnCount();
@@ -109,14 +65,33 @@ public class Controller implements java.awt.event.ActionListener,
 
 	// clear the board and reset the turn count to 0
 	public void clear() {
-		model.initDefault();
+		if (isRunning == false) {
+			model.initDefault();
+		}
 	}
 
-	// step the simulation through one application of the rules and increment
-	// the turn counter
+	// when the step() function is called by the user
 	public void step() {
-		model.step();
+		if (isRunning == false) {
+			stepModel();
+		}
+	}
+	
+	// perform step() continuously at the selected time interval
+	public void run() {
+		if (isRunning == false) {
+			isRunning = true;
+			timer.restart();
+		}
+
 	}
 
+	// pause running
+	public void pause() {
+		if (isRunning == true) {
+			isRunning = false;
+			timer.stop();
+		}
+	}
 
 }

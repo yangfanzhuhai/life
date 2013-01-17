@@ -4,13 +4,13 @@ import life.Life.Colour;
 
 public class Cell {
 	private Colour color;
-	private int x;
-	private int y;
+	private int row;
+	private int column;
 
-	public Cell(int row, int column) {
+	public Cell(int x, int y) {
 		color = Colour.GREY;
-		x = row;
-		y = column;
+		row = x;
+		column = y;
 	}
 
 	public void setColor(Colour c) {
@@ -26,10 +26,10 @@ public class Cell {
 	}
 
 	public int getRow() {
-		return x;
+		return row;
 	}
 	
 	public int getColumn() {
-		return y;
+		return column;
 	}
 }

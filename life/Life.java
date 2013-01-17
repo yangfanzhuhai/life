@@ -1,5 +1,4 @@
 package life;
-
 import javax.swing.JApplet;
 
 public class Life extends JApplet {
@@ -21,6 +20,14 @@ public class Life extends JApplet {
 		final View view = new View(this);
 		controller = new Controller(model);
 
+		// tells model about view
+		// model will notify view of changes
+		model.addObserver(view);
+
+		// tells view about controller,
+		// view will notify controller of user actions
+		view.addController(controller);
+
 		// Execute a job on the event-dispatching thread:
 		// creating this applet's GUI.
 		try {
@@ -33,14 +40,7 @@ public class Life extends JApplet {
 		} catch (Exception e) {
 			System.err.println("createGUI didn't successfully complete");
 		}
-		
-		// tells model about view
-		// model will notify view of changes
-		model.addObserver(view);
 
-		// tells view about controller,
-		// view will notify controller of user actions
-		view.addController(controller);
 	} // end of init
 
 	/*

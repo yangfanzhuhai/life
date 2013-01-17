@@ -1,5 +1,4 @@
 package life;
-
 import life.Life.Colour;
 
 public class Model extends java.util.Observable {
