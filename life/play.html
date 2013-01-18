@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+
+        <title>Play · The Game of Life</title>
+
+        <!-- Le styles -->
+        <link href="assets/css/bootstrap.css" rel="stylesheet">
+        <link href="assets/css/bootstrap-responsive.css" rel="stylesheet">
+        <link href="assets/css/docs.css" rel="stylesheet">
+
+    </head>
+
+    <body data-spy="scroll" data-target=".bs-docs-sidebar">
+
+        <!-- Navbar
+        ================================================== -->
+        <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="navbar-inner">
+                <div class="container">
+                    <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="brand" href="./life.html">The Game of Life</a>
+                    <div class="nav-collapse collapse">
+                        <ul class="nav">
+                            <li class="">
+                                <a href="./life.html">Home</a>
+                            </li>
+                            <li class="active">
+                                <a href="./play.html">Play</a>
+                            </li>
+                            <li class="">
+                                <a href="./rules.html">Rules</a>
+                            </li>
+                            <li class="">
+                                <a href="./design-pattern.html">Design Pattern</a>
+                            </li>
+                            <!--
+                            <li class="">
+                            <a href="./components.html">Components</a>
+                            </li>
+                            <li class="">
+                            <a href="./javascript.html">JavaScript</a>
+                            </li>
+                            <li class="">
+                            <a href="./customize.html">Customize</a>
+                            </li>
+                            -->
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Subhead
+        ================================================== -->
+        <header class="jumbotron subhead" id="overview">
+            <div class="container">
+                <h1>Play Life</h1>
+                <p class="lead">
+                    When life gives you a hundred reasons to cry,
+                    <br>
+                    show life that you have a thousand reasons to smile.
+                </p>
+                <small class="lead">Unknown</small>
+
+            </div>
+        </header>
+
+        <!-- Java Applet
+        ================================================== -->
+
+        <div class="container">
+            <hr>
+            <div class="row">
+                <div class="span3 bs-docs-sidebar">
+                    <div class="alert alert-block">
+                        <h4>Getting started</h4>
+                        <ul>
+                            <li>
+                                left click to set red
+                            </li>
+                            <li>
+                                right click to set green
+                            </li>
+                            <li>
+                                kill with scroll button
+                            </li>
+                            <li>
+                                let Life Run to observe change
+                            </li>
+                            <li>
+                                use the slider to change pace
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="alert alert-info">
+                        <h4>Try these patterns!</h4>
+
+                        <div class="accordion" id="accordion4">
+                            <div class="accordion-group">
+                                <div class="accordion-heading">
+                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion4" href="#collapseOne"> Still lifes </a>
+                                </div>
+                                <div id="collapseOne" class="accordion-body collapse">
+                                    <div class="accordion-inner">
+                                        <div align="center">
+                                            <table class="image">
+                                                <caption align="bottom">
+                                                    Block
+                                                </caption>
+                                                <tr>
+                                                    <td><img src="assets/img/Game_of_life_block_with_border.svg"></td>
+                                                </tr>
+                                            </table>
+
+                                            <table class="image">
+                                                <caption align="bottom">
+                                                    Beehive
+                                                </caption>
+                                                <tr>
+                                                    <td><img src="assets/img/Game_of_life_beehive.svg"></td>
+                                                </tr>
+                                            </table>
+
+                                            <table class="image">
+                                                <caption align="bottom">
+                                                    Loaf
+                                                </caption>
+                                                <tr>
+                                                    <td><img src="assets/img/Game_of_life_loaf.svg"></td>
+                                                </tr>
+                                            </table>
+                                            <table class="image">
+                                                <caption align="bottom">
+                                                    Boat
+                                                </caption>
+                                                <tr>
+                                                    <td><img src="assets/img/Game_of_life_boat.svg"></td>
+                                                </tr>
+                                            </table>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-group">
+                                <div class="accordion-heading">
+                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion4" href="#collapseTwo"> Oscillators </a>
+                                </div>
+                                <div id="collapseTwo" class="accordion-body collapse">
+                                    <div class="accordion-inner">
+                                        <div align="center">
+                                            <table class="image">
+                                                <caption align="bottom">
+                                                    Blinker
+                                                </caption>
+                                                <tr>
+                                                    <td><img src="assets/img/Game_of_life_blinker.gif"></td>
+                                                </tr>
+                                            </table>
+
+                                            <table class="image">
+                                                <caption align="bottom">
+                                                    Toad
+                                                </caption>
+                                                <tr>
+                                                    <td><img src="assets/img/Game_of_life_toad.gif"></td>
+                                                </tr>
+                                            </table>
+
+                                            <table class="image">
+                                                <caption align="bottom">
+                                                    Beacon
+                                                </caption>
+                                                <tr>
+                                                    <td><img src="assets/img/Game_of_life_beacon.gif"></td>
+                                                </tr>
+                                            </table>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion-group">
+                                <div class="accordion-heading">
+                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion4" href="#collapseThree"> Spaceships </a>
+                                </div>
+                                <div id="collapseThree" class="accordion-body collapse">
+                                    <div class="accordion-inner">
+                                        <div align="center">
+                                            <table class="image">
+                                                <caption align="bottom">
+                                                    Glider
+                                                </caption>
+                                                <tr>
+                                                    <td><img src="assets/img/Game_of_life_animated_glider.gif"></td>
+                                                </tr>
+                                            </table>
+
+                                            <table class="image">
+                                                <caption align="bottom">
+                                                    Lightweight spaceship (LWSS)
+
+                                                </caption>
+                                                <tr>
+                                                    <td><img src="assets/img/Game_of_life_animated_LWSS.gif"></td>
+                                                </tr>
+                                            </table>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion-group">
+                                <div class="accordion-heading">
+                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion4" href="#collapseFour"> Methuselahs </a>
+                                </div>
+                                <div id="collapseFour" class="accordion-body collapse in">
+                                    <div class="accordion-inner">
+                                        <div align="center">
+                                            <table class="image">
+                                                <caption align="bottom">
+                                                    The R-pentomino
+                                                </caption>
+                                                <tr>
+                                                    <td><img src="assets/img/Game_of_life_fpento.svg"></td>
+                                                </tr>
+                                            </table>
+
+                                            <table class="image">
+                                                <caption align="bottom">
+                                                    Diehard
+
+                                                </caption>
+                                                <tr>
+                                                    <td><img src="assets/img/Game_of_life_diehard.svg"></td>
+                                                </tr>
+                                            </table>
+
+                                            <table class="image">
+                                                <caption align="bottom">
+                                                    Acorn
+
+                                                </caption>
+                                                <tr>
+                                                    <td><img src="assets/img/Game_of_life_acorn.svg"></td>
+                                                </tr>
+                                            </table>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+                <div class="span9">
+
+                    <div align="center">
+                        <applet code="life.Life.class" width=700 height=700 ></applet>
+                    </div>
+                    <hr>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Footer
+        ================================================== -->
+        <footer class="footer">
+            <div class="container">
+                <p>
+                    Built by Yangfan Zhang
+                </p>
+                <p>
+                    yz10111@imperial.ac.uk
+                </p>
+                <p>
+                    Website template by <a href="http://twitter.github.com/bootstrap/index.html">Bootstrap</a>
+                </p>
+
+            </div>
+        </footer>
+
+        <!-- Le javascript
+        ================================================== -->
+        <!-- Placed at the end of the document so the pages load faster -->
+        <script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+        <script src="assets/js/jquery.js"></script>
+        <script src="assets/js/bootstrap-transition.js"></script>
+        <script src="assets/js/bootstrap-alert.js"></script>
+        <script src="assets/js/bootstrap-modal.js"></script>
+        <script src="assets/js/bootstrap-dropdown.js"></script>
+        <script src="assets/js/bootstrap-scrollspy.js"></script>
+        <script src="assets/js/bootstrap-tab.js"></script>
+        <script src="assets/js/bootstrap-tooltip.js"></script>
+        <script src="assets/js/bootstrap-popover.js"></script>
+        <script src="assets/js/bootstrap-button.js"></script>
+        <script src="assets/js/bootstrap-collapse.js"></script>
+        <script src="assets/js/bootstrap-carousel.js"></script>
+        <script src="assets/js/bootstrap-typeahead.js"></script>
+        <script src="assets/js/bootstrap-affix.js"></script>
+
+        <script src="assets/js/holder/holder.js"></script>
+        <script src="assets/js/google-code-prettify/prettify.js"></script>
+
+        <script src="assets/js/application.js"></script>
+    </body>
+</html>

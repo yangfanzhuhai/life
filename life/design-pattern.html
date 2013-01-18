@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+
+        <title>Design Pattern · The Game of Life</title>
+
+        <!-- Le styles -->
+        <link href="assets/css/bootstrap.css" rel="stylesheet">
+        <link href="assets/css/bootstrap-responsive.css" rel="stylesheet">
+        <link href="assets/css/docs.css" rel="stylesheet">
+        <link href="assets/js/google-code-prettify/prettify.css" rel="stylesheet">
+
+    </head>
+
+    <body data-spy="scroll" data-target=".bs-docs-sidebar">
+
+        <!-- Navbar
+        ================================================== -->
+        <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="navbar-inner">
+                <div class="container">
+                    <a class="brand" href="./life.html">The Game of Life</a>
+                    <div class="nav-collapse collapse">
+                        <ul class="nav">
+                            <li class="">
+                                <a href="./life.html">Home</a>
+                            </li>
+                            <li class="">
+                                <a href="./play.html">Play</a>
+                            </li>
+                            <li class="">
+                                <a href="./rules.html">Rules</a>
+                            </li>
+                            <li class="active">
+                                <a href="./design-pattern.html">Design Pattern</a>
+                            </li>
+                            <!--
+                            <li class="">
+                            <a href="./components.html">Components</a>
+                            </li>
+                            <li class="">
+                            <a href="./javascript.html">JavaScript</a>
+                            </li>
+                            <li class="">
+                            <a href="./customize.html">Customize</a>
+                            </li>
+                            -->
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Subhead
+        ================================================== -->
+        <header class="jumbotron subhead" id="overview">
+            <div class="container">
+                <h1>Design Pattern</h1>
+                <p class="lead">
+                    Design is a plan for arranging elements
+                    <br>
+                    in such a way as best to accomplish a particular purpose.
+                </p>
+                <small class="lead">Charles Eames, Designer</small>
+            </div>
+        </header>
+
+        <div class="container">
+            <!-- Docs nav
+            ================================================== -->
+            <div class="row">
+                <div class="span3 bs-docs-sidebar">
+                    <ul class="nav nav-list bs-docs-sidenav">
+                        <li>
+                            <a href="#overview"><i class="icon-chevron-right"></i> Overview</a>
+                        </li>
+                        <li>
+                            <a href="#program-structure"><i class="icon-chevron-right"></i> Program Structure</a>
+                        </li>
+                        <li>
+                            <a href="#implementation-details"><i class="icon-chevron-right"></i> Implementation Details</a>
+                        </li>
+                        <li>
+                            <a href="#pros-cons"><i class="icon-chevron-right"></i> Pros & Cons</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="span9">
+
+                    <!-- Overview
+                    ================================================== -->
+                    <section id="overview">
+                        <div class="page-header">
+                            <h1>Model View Controller</h1>
+                            <p>
+                                This game implementation employs the Model View Controller (MVC) design pattern,
+                                which decouples the GUI from the rest of the program. This page disscusses the implementation
+                                of the MVC pattern in the Game of Life.
+                            </p>
+                        </div>
+
+                        <h3>Justification of Choice</h3>
+                        <p>
+                            MVC is chosen as the underlying design pattern because of the following reasons.
+                        </p>
+                        <ul>
+                            <li>
+                                Firstly, MVC design pattern allows for multiple views that rely upon a single model.
+                                This reduces the code required to add new views. This makes MVC a useful design pattern to master.
+                                Therefore, time and effort spent in implementing a MVC program is worthwhile.
+                            </li>
+                            <li>
+                                Secondly, since the model is self-contained and separated from the controller and the view,
+                                it is much easier to change the data layer or the game rules. As a result, incremental development
+                                of the game rules is possible.
+                            </li>
+                            <li>
+                                Thirdly, MVC gives a neat and clean structure for the program. This makes codinig and
+                                debugging process easier and more pleasant.
+                            </li>
+                        </ul>
+
+                        <h3>Design Components</h3>
+                        <dl>
+                            <dt>
+                                Model
+                            </dt>
+                            <dd>
+
+                                <ul>
+                                    <li>
+                                        stores the colours of the grid cells and turn count
+                                    </li>
+                                    <li>
+                                        provides methods for accessing and modifying the cell colours and turn count according to the game rules
+                                    </li>
+                                    <li>
+                                        notifies the <strong>view</strong> of change
+                                    </li>
+                                </ul>
+
+                            </dd>
+                            <dt>
+                                View
+                            </dt>
+                            <dd>
+
+                                <ul>
+                                    <li>
+                                        produces the GUI representation of the <strong>model</strong>
+                                    </li>
+                                    <li>
+                                        provides methods for updating according to the lastest data from the <strong>model</strong>
+                                    </li>
+                                    <li>
+                                        creates a platform for user interaction and calls the relevant methods in the <strong>controller</strong>
+                                        with user input
+                                    </li>
+                                </ul>
+
+                            </dd>
+                            <dt>
+                                Controller
+                            </dt>
+                            <dd>
+
+                                <ul>
+                                    <li>
+                                        manages event-processing from the messages passed from the <strong>view</strong>
+                                    </li>
+                                    <li>
+                                        maps user input into actions on the <strong>model</strong>
+                                    </li>
+                                </ul>
+
+                            </dd>
+                        </dl>
+
+                        <h3>Component Interaction</h3>
+                        <p>
+                            Figure 1 illustrates the interaction between the MVC components.
+                        </p>
+                        <div align="center">
+                            <table class="image">
+                                <caption align="bottom">
+                                    Figure 1: MVC process <a href="http://en.wikipedia.org/wiki/File:MVC-Process.png">source </a>
+                                </caption>
+                                <tr>
+                                    <td><img src="assets/img/MVC-Process.png"></td>
+                                </tr>
+                            </table>
+                        </div>
+                        <p>
+                            In actual implementation, <strong>view</strong>
+                            is registered as an <b>Observer</b> of the <strong>model</strong>
+                            so the <strong>model</strong> can notify its observers of
+                            change without knowing who they are. Thus the <strong>model</strong>
+                            is reusable.
+                        </p>
+                        <p>
+                            Moreover, the <strong>view</strong> calls the relevant methods in the <strong>controller</strong>
+                            when there is user interaction on the GUI. The <strong>controller</strong> then
+                            calls relevant methods to access or modify the data in the <strong>model</strong>. An instruction loop is
+                            thus established.
+                        </p>
+
+                        <p>
+                            See details below.
+                        </p>
+                    </section>
+
+                    <!-- Program Structure
+                    ================================================== -->
+                    <section id="program-structure">
+                        <div class="page-header">
+                            <h1>Program Structure </h1>
+                        </div>
+
+                        <p>
+                            Figure 2 illustrates the structure of the program.
+                        </p>
+                        <div align="center">
+                            <table class="image">
+                                <caption align="bottom">
+                                    Figure 2: UML diagram of Life
+                                </caption>
+                                <tr>
+                                    <td><img src="assets/img/UML.png"></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </section>
+
+                    <!-- Implementation Details
+                    ================================================== -->
+                    <section id="implementation-details">
+                        <!-- Model
+                        ================================================== -->
+
+                        <div class="page-header">
+                            <h1>Model <small>Model.java</small></h1>
+                        </div>
+                        <p>
+                            <code>
+                                Model
+                            </code>
+                            stores the colours of the grid cells and the turn count. provides methods for accessing and modifying the cell colours and turn count according to the game rules
+                        </p>
+
+                        <p>
+                            Methods
+                            <code>
+                                initDefault()
+                            </code>
+                            ,
+                            <code>
+                                setCellColor()
+                            </code>
+                            and
+                            <code>
+                                step()
+                            </code>
+                            are used for modifying the stored state of the model.
+                        </p>
+
+                        <p>
+                            Furthermore, methods
+                            <code>
+                                getCellColor
+                            </code>
+                            ,
+                            <code>
+                                getTurnCount()
+                            </code>
+                            and
+                            <code>
+                                getCells()
+                            </code>
+                            are used for accessing the stored state of the model.
+                        </p>
+
+                        <p>
+                            Class
+                            <code>
+                                Model
+                            </code>
+                            is a subclass of
+                            <code>
+                                java.util.Observable
+                            </code>.
+                            This allows
+                            the model to add observers and later emit notices of change to the registered observers.
+                        </p>
+                        <pre class="prettyprint linenums">public class Model extends java.util.Observable</pre>                                                                                                                                                                                                                                                                                                                                                
+
+
+
+
+
+
+
+
+
+                        <p>
+                            <code>
+                                updateView()
+                            </code>
+                            is called whenever the model modifies the data and needs
+                            to update the view.
+                            <code>
+                                notifyObservers(getCells())
+                            </code> notifies the model's observers
+                            of change and pushes the model's status to the view.
+                            It passes the grid cells stored in the model as a parameter. This allows the view to update
+                            the GUI according to the latest data.
+                        </p>
+                        <p>
+                            <code>
+                                javax.swing.SwingUtilities.invokeLater()
+                            </code>
+                            is used here
+                            for arranging the GUI update code to be called on the <em>event dispatch thread</em>.
+                            See <a href="http://www.javamex.com/tutorials/threads/invokelater.shtml">Threading with Swing (ctd):
+                            SwingUtilities.invokeLater()</a> for explanation.
+                        </p>
+                        <pre class="prettyprint linenums">
+private void updateView() {
+    setChanged();
+    try {
+        javax.swing.SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
+                notifyObservers(getCells());
+            }
+        });
+    } catch (Exception e) {
+        System.err.println("View update didn't successfully complete");
+    }
+}
+</pre>
+                        <div class="alert alert-info">
+                            <h4>Note</h4>
+                            The model does not have references to where the notices are sent or from where it will
+                            accept the command, i.e. the view(s) and the controller. This makes
+                            the model reusable for developing mutiple views.
+                        </div>
+
+                        <p>
+                            A non-reusable piece of code <em>Life.java</em> tells model
+                            to send notices to view and to accept commands from controller.
+                        </p>
+
+                        <!-- View
+                        ================================================== -->
+
+                        <div class="page-header">
+                            <h1>View <small>View.java</small></h1>
+                        </div>
+
+                        The
+                        <code>
+                            View
+                        </code> initialises the GUI and maintains it by pulling the latest
+                        data from the model upon notice and calling the relevant methods in the controller
+                        with the user input.
+
+                        <p>
+                            Class
+                            <code>
+                                View
+                            </code>
+                            implements
+                            <code>
+                                java.util.Observer
+                            </code>.
+                            This allows the view to obtain the updated state of the model through the method
+                            <code>
+                                update(Observable, Object)
+                            </code>
+                            whenever the model notifies the obervers of change.
+                        </p>
+                        <pre class="prettyprint linenums">public class View implements java.util.Observer</pre>
+                        <p>
+                            <code>
+                                update(Observable, Object)
+                            </code>
+                            is called whenever the model calls
+                            <code>
+                                updateView()
+                            </code>
+                            . It pulls data from the model and update the GUI accordingly.
+                        </p>
+                        <p>
+                            <code>
+                                applet
+                            </code>
+                            is a reference to
+                            <code>
+                                Life
+                            </code>
+                            which extends
+                            <code>
+                                JApplet
+                            </code>
+                            . This is where the GUI is displayed.
+                        </p>
+                        <pre class="prettyprint linenums">
+@Override
+public void update(Observable object, Object arg) {
+    Model model = (Model) object;
+    updateTurnCount(model.getTurnCount());
+    updateCellPanel((Cell[][]) arg);
+    applet.validate();
+}
+</pre>
+                        <p>
+                            <code>
+                                addController(Controller)
+                            </code>
+                            is a method that stores a reference of the
+                            <code>
+                                Controller
+                            </code>.
+
+                            When the view knows the controller, it can then call the relevant methods in the controller
+                            when there is user interaction on the GUI.
+                        </p>
+
+                        <p>
+                            For example, when a function button is clicked, the
+                            <code>
+                                ActionListener
+                            </code>
+                            calls the corresponding method in the controller to act accordingly.
+                        </p>
+                        <pre class="prettyprint linenums">
+// when a function button is clicked
+@Override
+public void actionPerformed(ActionEvent event) {
+    // the button pressed
+    final JButton sent = (JButton) event.getSource();
+    // the button's label
+    final String label = sent.getText();
+    
+    if (label.equals("Run")) {
+        sent.setText("Pause");
+        controller.run();
+    } else if (label.equals("Pause")) {
+        sent.setText("Run");
+        controller.pause();
+    } else if (label.equals("Clear")) {
+        controller.clear();
+    } else if (label.equals("Step")) {
+        controller.step();
+    }
+}
+</pre>
+                        <div class="alert alert-info">
+                            <h4>Note</h4>
+                            The view needs to know the methods in the model that return the stored data. It
+                            also needs to know the controller and the methods in the controller which will
+                            act upon the different user input.
+                        </div>
+
+                        <!-- Controller
+                        ================================================== -->
+
+                        <div class="page-header">
+                            <h1>Controller <small>Controller.java</small></h1>
+                        </div>
+
+                        <p>
+                            The
+                            <code>
+                                controller
+                            </code> provides methods for accessing or modifying the stored
+                            data in the model.
+                        </p>
+                        <p>
+                            The
+                            <code>
+                                controller
+                            </code> also provides methods which can be called by a view to perform
+                            action upon user interaction on the view.
+                        </p>
+                        <p>
+                            Moreover, the
+                            <code>
+                                controller
+                            </code>
+                            has a
+                            <code>
+                                Timer
+                            </code> which can be used
+                            by the view when there is a change in the run speed. The deactivation of funtional buttons
+                            when Run is called is also implemented in this class.
+                        </p>
+
+                        <div class="alert alert-info">
+                            <h4>Note</h4>
+                            The controller keeps a reference of the model so it
+                            can instruct the model to modifty the data stored. The controller does not have a
+                            reference of the view. The methods it provides can be called by multiple views which
+                            need action upon user interaction. Therefore, the controller is reusable for multiple
+                            views of the same model.
+                        </div>
+
+                        <!-- Life
+                        ================================================== -->
+
+                        <div class="page-header">
+                            <h1>Life <small>Life.java</small></h1>
+                        </div>
+                        <p>
+                            This piece of code initiates the MVC and establishes the links between the components.
+                        </p>
+                        <pre class="prettyprint linenums">// called by the html page to initilise the applet
+public void init() {
+    // creates the MVC
+    Model model = new Model();
+    final View view = new View(this);
+    controller = new Controller(model);
+
+    // tells model about view
+    // model will notify view of changes
+    model.addObserver(view);
+
+    // tells view about controller,
+    // view will notify controller of user actions
+    view.addController(controller);
+
+    // Execute a job on the event-dispatching thread:
+    // creating this applet's GUI.
+    try {
+        javax.swing.SwingUtilities.invokeAndWait(new Runnable() {
+            public void run() {
+                // initialises the View
+                view.createGUI();
+            }
+        });
+    } catch (Exception e) {
+        System.err.println("createGUI didn't successfully complete");
+    }
+} // end of init</pre>
+                        <p>
+                            It also serves as an interface with some given methods to access or modify the grid cells
+                            which call the corresponding methods in the controller. The controller then instructs the model to carry out the actions.
+                        </p>
+
+                    </section>
+
+                    <!-- Pros & Cons
+                    ================================================== -->
+                    <section id="pros-cons">
+                        <div class="page-header">
+                            <h1>Pros & Cons </h1>
+                            <p>
+                                This implementation has the following advantages and disadvantages.
+                            </p>
+                        </div>
+
+                        <h3>Pros</h3>
+
+                        <dl>
+                            <dt>
+                                Easy addition of new view
+                            </dt>
+                            <dd>
+                                <p>
+                                    When adding a new view, we only need to add a few lines in <em>Life.java</em>.
+                                    Firstly, we create an instance of the new view. Secondly, we add the new view as
+                                    an observer of the model. Thirdly, we store a reference to the controller in the new
+                                    view. Finally, we initialise the new view.
+                                </p>
+                                <p>
+                                    As a result, minimum modification to the original code
+                                    is required.
+                                </p>
+
+                            </dd>
+                            <dt>
+                                Flexibility in new view
+                            </dt>
+                            <dd>
+                                <p>
+                                    This MVC implementation allows for the flexibility to add new functionalities
+                                    in a new view for the same model.
+                                </p>
+                                <p>
+                                    For example, it is possible to add a functional button
+                                    <code>
+                                        Step*10
+                                    </code>
+                                    that performs 10 steps upon clicking. We just need to add a new method
+                                    in the controller that performs 10 steps and then get the button ActionListerner
+                                    to call this method.
+                                </p>
+                                <p>
+                                    Such code addition will not affect the compatility of the existing views because
+                                    the controller methods used by those views are not changed.
+                                </p>
+                                <p>
+                                    This flexibility is very useful when the new view is vastly different
+                                    from the exsiting ones.
+                                </p>
+                            </dd>
+                        </dl>
+
+                        <h3>Cons</h3>
+                        <p>
+                            The main disadvantage of this implementation is that each view needs to know
+                            the methods in the model which return the cells and the turn count. Each view also
+                            needs to know the specific controller method to call for each user interaction.
+                        </p>
+
+                        <p>
+                            This makes the views non-resusable because they involve calling methods specific
+                            to the current model and controller only.
+                        </p>
+
+                        <h3>Conclusion</h3>
+                        <p>
+                            In conclusion, this implementation of the Game of Life enables easy addtion of a new view and is flexible
+                            with a new view's functional options. Since the spirit of a MVC pattern lies in
+                            allowing multiple views to rely upon a single model, this implementation meets the basic
+                            requirement of a MVC pattern and is an effective one.
+                        </p>
+                    </section>
+
+                </div>
+            </div>
+            <!-- Footer
+            ================================================== -->
+            <footer class="footer">
+                <div class="container">
+                    <p>
+                        Built by Yangfan Zhang
+                    </p>
+                    <p>
+                        yz10111@imperial.ac.uk
+                    </p>
+                    <p>
+                        Website template by <a href="http://twitter.github.com/bootstrap/index.html">Bootstrap</a>
+                    </p>
+
+                </div>
+            </footer>
+
+            <!-- Le javascript
+            ================================================== -->
+            <!-- Placed at the end of the document so the pages load faster -->
+            <script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+            <script src="assets/js/jquery.js"></script>
+            <script src="assets/js/bootstrap-transition.js"></script>
+            <script src="assets/js/bootstrap-alert.js"></script>
+            <script src="assets/js/bootstrap-modal.js"></script>
+            <script src="assets/js/bootstrap-dropdown.js"></script>
+            <script src="assets/js/bootstrap-scrollspy.js"></script>
+            <script src="assets/js/bootstrap-tab.js"></script>
+            <script src="assets/js/bootstrap-tooltip.js"></script>
+            <script src="assets/js/bootstrap-popover.js"></script>
+            <script src="assets/js/bootstrap-button.js"></script>
+            <script src="assets/js/bootstrap-collapse.js"></script>
+            <script src="assets/js/bootstrap-carousel.js"></script>
+            <script src="assets/js/bootstrap-typeahead.js"></script>
+            <script src="assets/js/bootstrap-affix.js"></script>
+
+            <script src="assets/js/holder/holder.js"></script>
+            <script src="assets/js/google-code-prettify/prettify.js"></script>
+
+            <script src="assets/js/application.js"></script>
+    </body>
+</html>
