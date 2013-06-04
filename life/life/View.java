@@ -136,8 +136,8 @@ public class View implements java.util.Observer {
 		button.setBackground(Color.GRAY);
 
 		// for display in Mac OS X
-		 button.setOpaque(true);
-		 button.setBorderPainted(false);
+		// button.setOpaque(true);
+		// button.setBorderPainted(false);
 
 		// add MouseListener to button and send the
 		// color change request to controller

@@ -66,53 +66,86 @@
         </header>
 
         <div class="container">
-            <!-- Content
-            ================================================== -->
-            <h3>zero-player</h3>
+            <hr>
+            <div class="page-header">
+                <h1>zero-player</h1>
 
-            <p>
+            </div>
+            <p class="lead">
                 Alter the initial configuration and observe how it unfolds.
                 <br>
                 The game's evolution is determined by its initial state, requiring no further input.
             </p>
+            <hr>
+            <div class="page-header">
+                <h1>edgeless grid</h1>
 
-            <h3>edgeless grid</h3>
-            <p>
+            </div>
+
+            <p class="lead">
                 The universe of the game is set out as a grid of cells. The grid is often assumed
                 to be infinite.
                 <br>
                 In this implementation the grid is wrapped around as a torus
                 (or dough-nut) so that each cell has eight neighbouring cells.
             </p>
+            <div align="center">
+                <img src="assets/img/Stars-Stripes-donut-red.jpg">
+            </div>
 
-            <h3>life or death</h3>
-            <p>
-                Each cell is in one of two possible states: <strong>alive</strong> or <strong>dead</strong>.
+            <hr>
+            <div class="page-header">
+                <h1>life or death</h1>
+
+            </div>
+
+            <p class="lead">
+                Each cell is in one of two possible states: <strong>alive</strong><img src="assets/img/red_grid.png"> or <strong>dead</strong><img src="assets/img/gray_grid.png"> .
                 <br>
                 At each step in time, the following transitions occur:
-                <ol>
-                    <li>
-                        Any live cell with fewer than two live neighbours dies, as if by isolation.
-                    </li>
-                    <li>
-                        Any live cell with two or three live neighbours lives on to the next generation.
-                    </li>
-                    <li>
-                        Any live cell with more than three live neighbours dies, as if by overcrowding.
-                    </li>
-                    <li>
-                        Any dead cell with exactly three live neighbours becomes a live cell, as if by reproduction.
-                    </li>
-                </ol>
             </p>
 
-            <h3>colourful life</h3>
-            <p>
-                Cells also have a colour: either red or green.
+            <table class="table table-hover">
+                <tr>
+                    <td> Rule </td>
+                    <td> Step 0 </td>
+                    <td> Step 1 </td>
+                </tr>
+                <tr>
+                    <td> Any live cell with fewer than two live neighbours dies, as if by isolation. </td>
+                    <td><img src="assets/img/rule2_1.png"></td>
+                    <td><img src="assets/img/rule1_1.png"></td>
+                </tr>
+                <tr>
+                    <td> Any live cell with two or three live neighbours lives on to the next generation. </td>
+                    <td><img src="assets/img/rule3_1.png"></td>
+                    <td><img src="assets/img/rule3_1.png"></td>
+                </tr>
+                <tr>
+                    <td> Any live cell with more than three live neighbours dies, as if by overcrowding. </td>
+                    <td><img src="assets/img/rule4_1.png"></td>
+                    <td><img src="assets/img/rule4_2.png"></td>
+                </tr>
+                <tr>
+                    <td> Any dead cell with exactly three live neighbours becomes a live cell, as if by reproduction. </td>
+                    <td><img src="assets/img/rule5_1.png"></td>
+                    <td><img src="assets/img/rule5_2.png"></td>
+                </tr>
+            </table>
+
+            <hr>
+            <div class="page-header">
+                <h1>colourful life</h1>
+            </div>
+            <p class="lead">
+                Cells also have a colour: either red <img src="assets/img/red_grid.png"> or green <img src="assets/img/green_grid.png"> .
                 <br>
                 When a new cell is born it inherits the majority colour of its surrounding cells.
             </p>
 
+            <div align="center">
+                <img src="assets/img/Screenshot.png">
+            </div>
         </div>
 
         <!-- Footer
@@ -122,12 +155,7 @@
                 <p>
                     Built by Yangfan Zhang
                 </p>
-                <p>
-                    yz10111@imperial.ac.uk
-                </p>
-                <p>
-                    Website template by <a href="http://twitter.github.com/bootstrap/index.html">Bootstrap</a>
-                </p>
+          
 
             </div>
         </footer>

@@ -5,6 +5,7 @@ public class Life extends JApplet {
 
 	public static final int ROWS = 30;
 	Controller controller;
+	View view;
 
 	// enum for managing the basic three colours of the cells
 	// RED and GREEN cells are alive, GREY cells are dead
@@ -12,12 +13,10 @@ public class Life extends JApplet {
 		RED, GREEN, GREY;
 	}
 
-	// called by the html page to initilise the applet
-	public void init() {
-
+  public Life() {
 		// creates the MVC
 		Model model = new Model();
-		final View view = new View(this);
+		view = new View(this);
 		controller = new Controller(model);
 
 		// tells model about view
@@ -27,6 +26,10 @@ public class Life extends JApplet {
 		// tells view about controller,
 		// view will notify controller of user actions
 		view.addController(controller);
+  }
+  
+	// called by the html page to initilise the applet
+	public void init() {
 
 		// Execute a job on the event-dispatching thread:
 		// creating this applet's GUI.
