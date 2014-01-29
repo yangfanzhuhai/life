@@ -35,17 +35,6 @@
                             <li class="active">
                                 <a href="./design-pattern.html">Design Pattern</a>
                             </li>
-                            <!--
-                            <li class="">
-                            <a href="./components.html">Components</a>
-                            </li>
-                            <li class="">
-                            <a href="./javascript.html">JavaScript</a>
-                            </li>
-                            <li class="">
-                            <a href="./customize.html">Customize</a>
-                            </li>
-                            -->
                         </ul>
                     </div>
                 </div>
@@ -116,7 +105,7 @@
                                 of the game rules is possible.
                             </li>
                             <li>
-                                Thirdly, MVC gives a neat and clean structure for the program. This makes codinig and
+                                Thirdly, MVC gives a neat and clean structure for the program. This makes coding and
                                 debugging process easier and more pleasant.
                             </li>
                         </ul>
@@ -292,16 +281,7 @@
                             This allows
                             the model to add observers and later emit notices of change to the registered observers.
                         </p>
-                        <pre class="prettyprint linenums">public class Model extends java.util.Observable</pre>                                                                                                                                                                                                                                                                                                                                                
-
-
-
-
-
-
-
-
-
+                        <pre class="prettyprint linenums">public class Model extends java.util.Observable</pre> 
                         <p>
                             <code>
                                 updateView()
@@ -336,8 +316,7 @@ private void updateView() {
     } catch (Exception e) {
         System.err.println("View update didn't successfully complete");
     }
-}
-</pre>
+}</pre>
                         <div class="alert alert-info">
                             <h4>Note</h4>
                             The model does not have references to where the notices are sent or from where it will
@@ -411,8 +390,7 @@ public void update(Observable object, Object arg) {
     updateTurnCount(model.getTurnCount());
     updateCellPanel((Cell[][]) arg);
     applet.validate();
-}
-</pre>
+}</pre>
                         <p>
                             <code>
                                 addController(Controller)
@@ -453,8 +431,7 @@ public void actionPerformed(ActionEvent event) {
     } else if (label.equals("Step")) {
         controller.step();
     }
-}
-</pre>
+}</pre>
                         <div class="alert alert-info">
                             <h4>Note</h4>
                             The view needs to know the methods in the model that return the stored data. It
@@ -514,11 +491,11 @@ public void actionPerformed(ActionEvent event) {
                         <p>
                             This piece of code initiates the MVC and establishes the links between the components.
                         </p>
-                        <pre class="prettyprint linenums">// called by the html page to initilise the applet
-public void init() {
-    // creates the MVC
+                        <pre class="prettyprint linenums">
+public Life() {
+// creates the MVC
     Model model = new Model();
-    final View view = new View(this);
+    view = new View(this);
     controller = new Controller(model);
 
     // tells model about view
@@ -528,7 +505,10 @@ public void init() {
     // tells view about controller,
     // view will notify controller of user actions
     view.addController(controller);
+}
 
+// called by the html page to initilise the applet
+public void init() {
     // Execute a job on the event-dispatching thread:
     // creating this applet's GUI.
     try {
